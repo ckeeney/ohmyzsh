@@ -48,7 +48,12 @@
 #   # Paste to a file
 #   clippaste > file.txt
 #
+# Still slow?
 function detect-clipboard() {
+  emulate -L zsh
+  (( ${+commands[wl-copy]} )) || true
+}
+function _disabled_detect-clipboard() {
   emulate -L zsh
 
   if [[ "${OSTYPE}" == darwin* ]] && (( ${+commands[pbcopy]} )) && (( ${+commands[pbpaste]} )); then
